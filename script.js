@@ -1,12 +1,4 @@
-// Assignment Code
 var generateBtn = document.querySelector("#generate");
-
-
-
-//---- Let me start by saying this code is totally optional and if you want to go in a completely different direction I support it. Go with your gut and what works for you because it will help you figure out your thought process.Let us know if you have any questions and don't be afraid to start a dialogue with fellow students!  ----------------------- Delete this before you push your code to github LOL 
-
-
-
 
 function getPasswordOptions() {
 
@@ -16,14 +8,23 @@ function getPasswordOptions() {
     10
   );
 
-  // YOU WILL NEED MORE CODE IN HERE!~!!!!!!!!-----------------------------------
-
-
   // Conditional statement to check if password length is a number. Prompts end if this evaluates false
   if (Number.isNaN(length)) {
     alert('Password length must be provided as a number');
     return null;
   }
+
+  var hasLowerCaseCharacters = confirm(
+    'Click OK to confirm including lower case characters.'
+  );
+
+  var hasUpperCaseCharacters = confirm(
+    'Click OK to confirm including upper case characters.'
+  );
+
+  var hasNumericCharacters = confirm(
+    'Click OK to confirm including numeric characters.'
+  );
 
   // Variable to store boolean regarding the inclusion of special characters
   var hasSpecialCharacters = confirm(
@@ -33,7 +34,10 @@ function getPasswordOptions() {
    // Object to store user input
    var passwordOptions = {
     length: length,
-    // add more properties and values here
+    hasLowerCaseCharacters: hasLowerCaseCharacters,
+    hasUpperCaseCharacters: hasUpperCaseCharacters,
+    hasNumericCharacters: hasNumericCharacters,
+    hasSpecialCharacters: hasSpecialCharacters
    }
 
    return passwordOptions;
