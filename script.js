@@ -34,6 +34,11 @@ function getPasswordOptions() {
     'Click OK to confirm including special characters.'
   );
 
+  if (!hasLowerCaseCharacters && !hasUpperCaseCharacters && !hasNumericCharacters && !hasSpecialCharacters) {
+    alert('Password must contain at least one character type. Please try again.');
+    return null;
+  }
+
    // Object to store user input
    var passwordOptions = {
     length: length,
