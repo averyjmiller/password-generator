@@ -12,6 +12,9 @@ function getPasswordOptions() {
   if (Number.isNaN(length)) {
     alert('Password length must be provided as a number');
     return null;
+  } else if (length < 8 || length > 128) {
+    alert('Password length must be at least 8 characters and no more than 128 characters');
+    return null;
   }
 
   var hasLowerCaseCharacters = confirm(
