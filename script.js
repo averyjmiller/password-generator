@@ -132,12 +132,12 @@ function generatePassword() {
     guaranteedCharacters.splice(index, 1);
   }
 
+  var difference = options.length - result.length;
+
   // Random elements in the possibleCharacters array are pushed to the result array until it reaches the desired password length
   for (i = 0; i < difference; ++i) {
     result.push(getRandom(possibleCharacters));
   }
-
-  console.log('result: ' + result);
 
     // Transform the result into a string and pass into writePassword
     return result.join('');
