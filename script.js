@@ -12,19 +12,25 @@ function getPasswordOptions() {
   if (Number.isNaN(length)) {
     alert('Password length must be provided as a number');
     return null;
-  } else if (length < 8 || length > 128) {
+  } 
+
+  // Conditional statment to check if password length is at least 8 characters and no more than 128 characters. Promps end if this is false
+  if (length < 8 || length > 128) {
     alert('Password length must be at least 8 characters and no more than 128 characters');
     return null;
   }
 
+  // Variable to store boolean regarding the inclusion of lower case characters
   var hasLowerCaseCharacters = confirm(
     'Click OK to confirm including lower case characters.'
   );
 
+  // Variable to store boolean regarding the inclusion of upper case characters
   var hasUpperCaseCharacters = confirm(
     'Click OK to confirm including upper case characters.'
   );
 
+  // Variable to store boolean regarding the inclusion of numeric characters
   var hasNumericCharacters = confirm(
     'Click OK to confirm including numeric characters.'
   );
@@ -34,6 +40,7 @@ function getPasswordOptions() {
     'Click OK to confirm including special characters.'
   );
 
+  // Verifies that at least one character type is selected
   if (!hasLowerCaseCharacters && !hasUpperCaseCharacters && !hasNumericCharacters && !hasSpecialCharacters) {
     alert('Password must contain at least one character type. Please try again.');
     return null;
@@ -47,6 +54,15 @@ function getPasswordOptions() {
     hasNumericCharacters: hasNumericCharacters,
     hasSpecialCharacters: hasSpecialCharacters
    }
+
+   // User input is displayed
+   alert('Your password will contain...' + '\n' +
+          'Length: ' + passwordOptions.length + ' characters,' + '\n' +
+          'Lower Case: ' + passwordOptions.hasLowerCaseCharacters + ',' + '\n' +
+          'Upper Case: ' + passwordOptions.hasUpperCaseCharacters + ',' + '\n' +
+          'Numeric Characters: ' + passwordOptions.hasNumericCharacters + ',' + '\n' +
+          'Special Characters: ' + passwordOptions.hasSpecialCharacters
+   );
 
    return passwordOptions;
 }
