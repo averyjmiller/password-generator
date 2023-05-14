@@ -90,6 +90,14 @@ function generatePassword() {
   // Array to contain one of each type of chosen character to ensure each will be used
   var guaranteedCharacters = [];
 
+  var lowerCaseCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+  var upperCaseCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+  var specialCharacters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '=', '[', ']', '{', '}', ';', ':', '"', ',', '.', '/', '?', '<', '>', '~', '`'];
+
+  var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
   // Check if an options object exists, if not exit the function
   if (!options) return null;
 
@@ -100,8 +108,22 @@ function generatePassword() {
     guaranteedCharacters.push(getRandom(specialCharacters));
   }
 
-  
+  if (options.hasNumericCharacters) {
+    possibleCharacters = possibleCharacters.concat(numericCharacters);
+    guaranteedCharacters.push(getRandom(numericCharacters));
+  }
 
+  if (options.hasUpperCaseCharacters) {
+    possibleCharacters = possibleCharacters.concat(upperCaseCharacters);
+    guaranteedCharacters.push(getRandom(upperCaseCharacters));
+  }
+
+  if (options.hasLowerCaseCharacters) {
+    possibleCharacters = possibleCharacters.concat(lowerCaseCharacters);
+    guaranteedCharacters.push(getRandom(lowerCaseCharacters));
+  }
+
+  console.log(guaranteedCharacters);
 
     // Transform the result into a string and pass into writePassword
     return result.join('');
