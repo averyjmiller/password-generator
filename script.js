@@ -55,15 +55,6 @@ function getPasswordOptions() {
     hasSpecialCharacters: hasSpecialCharacters
    }
 
-   // User input is displayed
-   alert('Your password will contain...' + '\n' +
-          'Length: ' + passwordOptions.length + ' characters,' + '\n' +
-          'Lower Case: ' + passwordOptions.hasLowerCaseCharacters + ',' + '\n' +
-          'Upper Case: ' + passwordOptions.hasUpperCaseCharacters + ',' + '\n' +
-          'Numeric Characters: ' + passwordOptions.hasNumericCharacters + ',' + '\n' +
-          'Special Characters: ' + passwordOptions.hasSpecialCharacters
-   );
-
    return passwordOptions;
 }
 
@@ -108,22 +99,45 @@ function generatePassword() {
     guaranteedCharacters.push(getRandom(specialCharacters));
   }
 
+   // Conditional statement that adds array of numeric characters into array of possible characters based on user input
+  // Push new random numeric character to guaranteedCharacters
   if (options.hasNumericCharacters) {
     possibleCharacters = possibleCharacters.concat(numericCharacters);
     guaranteedCharacters.push(getRandom(numericCharacters));
   }
 
+   // Conditional statement that adds array of upper case characters into array of possible characters based on user input
+  // Push new random upper case character to guaranteedCharacters
   if (options.hasUpperCaseCharacters) {
     possibleCharacters = possibleCharacters.concat(upperCaseCharacters);
     guaranteedCharacters.push(getRandom(upperCaseCharacters));
   }
 
+   // Conditional statement that adds array of lower case characters into array of possible characters based on user input
+  // Push new random lower case character to guaranteedCharacters
   if (options.hasLowerCaseCharacters) {
     possibleCharacters = possibleCharacters.concat(lowerCaseCharacters);
     guaranteedCharacters.push(getRandom(lowerCaseCharacters));
   }
 
-  console.log(guaranteedCharacters);
+  // Loops through the guaranteedCharacters array to randomly push each element into the result array. When an element is pushed it is removed so there are no repeats
+  // This makes sure that the desired character types are all present in the final password
+  for (i = guaranteedCharacters.length; i > 0; --i) {
+    var randomCharacter = getRandom(guaranteedCharacters);
+
+    result.push(randomCharacter);
+
+    // 'indexOf' and 'splice' lines of code are provided by https://sentry.io/answers/remove-specific-item-from-array/
+    index = guaranteedCharacters.indexOf(randomCharacter);
+    guaranteedCharacters.splice(index, 1);
+  }
+
+  // Random elements in the possibleCharacters array are pushed to the result array until it reaches the desired password length
+  for (i = 0; i < difference; ++i) {
+    result.push(getRandom(possibleCharacters));
+  }
+
+  console.log('result: ' + result);
 
     // Transform the result into a string and pass into writePassword
     return result.join('');
